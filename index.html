@@ -10,6 +10,155 @@
 </head>
 
 <body>
+    <!DOCTYPE html>
+    <html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Переход к банкам</title>
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                padding: 30px;
+            }
+
+            .bank {
+                padding: 15px;
+                background: #eefaf1;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- 🔹 Навигация по банкам -->
+        <h4>Банки</h4>
+        <div class="mb-3">
+            <button class="btn btn-outline-primary" data-scroll-credit="bank1">Банк 1 (во 2 табе)</button>
+            <button class="btn btn-outline-primary" data-scroll-credit="bank2">Банк 2 (во 2 табе)</button>
+            <button class="btn btn-outline-primary" data-scroll-credit="bank3">Банк 3 (во 2 табе)</button>
+            <button class="btn btn-outline-success" data-scroll-credit="bank4">Банк 4 (в 3 табе)</button>
+        </div>
+
+        <hr>
+
+        <!-- 🔹 Вкладки -->
+        <ul class="nav nav-tabs" id="bankTabs" role="tablist">
+            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1">Таб
+                    1</button>
+            </li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">Таб 2</button>
+            </li>
+            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3">Таб 3</button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+
+            <!-- Таб 1 -->
+            <div class="tab-pane fade show active" id="tab1">
+                <p>Тут пока ничего нет...</p>
+            </div>
+
+            <!-- Таб 2 — с банками и спойлерами -->
+            <div class="tab-pane fade" id="tab2">
+                <div class="accordion" id="bankAccordion">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseBank1">
+                                Спойлер Банк 1
+                            </button>
+                        </h2>
+                        <div id="collapseBank1" class="accordion-collapse collapse" data-bs-parent="#bankAccordion">
+                            <div class="accordion-body">
+                                <div class="bank" data-scroll-target="bank1">💳 Информация о банке 1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseBank2">
+                                Спойлер Банк 2
+                            </button>
+                        </h2>
+                        <div id="collapseBank2" class="accordion-collapse collapse" data-bs-parent="#bankAccordion">
+                            <div class="accordion-body">
+                                <div class="bank" data-scroll-target="bank2">💳 Информация о банке 2</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseBank3">
+                                Спойлер Банк 3
+                            </button>
+                        </h2>
+                        <div id="collapseBank3" class="accordion-collapse collapse" data-bs-parent="#bankAccordion">
+                            <div class="accordion-body">
+                                <div class="bank" data-scroll-target="bank3">💳 Информация о банке 3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Таб 3 -->
+            <div class="tab-pane fade" id="tab3">
+                <div class="bank" data-scroll-target="bank4">🏦 Информация о банке 4</div>
+            </div>
+
+        </div>
+
+        <!-- jQuery + Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('[data-scroll-credit]').on('click', function () {
+                    let n = $(this).data('scroll-credit');
+                    let target = $('[data-scroll-target=' + n + ']');
+                    if (target.length === 0) return;
+
+                    // 🔹 1. Активируем нужный таб
+                    let tabPane = target.closest('.tab-pane');
+                    if (tabPane.length) {
+                        let tabId = tabPane.attr('id');
+                        let tabButton = $('[data-bs-target="#' + tabId + '"]');
+                        if (tabButton.length) tabButton.tab('show');
+                    }
+
+                    // 🔹 2. Раскрываем спойлер, если есть
+                    let collapse = target.closest('.collapse');
+                    if (collapse.length && !collapse.hasClass('show')) {
+                        collapse.collapse('show');
+                    }
+
+                    // 🔹 3. После открытия — плавный скролл
+                    setTimeout(function () {
+                        $('html, body').animate(
+                            { scrollTop: target.offset().top - 60 },
+                            600
+                        );
+                    }, 400);
+                });
+            });
+        </script>
+    </body>
+
+    </html>
 
 </body>
 
