@@ -1,3 +1,5 @@
+// 1
+
 let age = prompt('Який ваг вік?');
 let message = (age < 12) ? 'Вітаю, Дитино!' :
     (age < 18) ? 'Вітаю  підліток' :
@@ -8,6 +10,8 @@ let message = (age < 12) ? 'Вітаю, Дитино!' :
 
 alert(message);
 
+
+// 2
 let namber = prompt('Введіть будь-яке число від 0 до 9');
 let nam = (namber == 0) ? ')' :
     (namber == 1) ? '!' :
@@ -23,7 +27,7 @@ let nam = (namber == 0) ? ')' :
 
 alert(nam);
 
-
+// 3
 
 let start = parseInt(prompt("Введіть початок діапазону:"));
 let end = parseInt(prompt("Введіть кінець діапазону:"));
@@ -63,7 +67,7 @@ if (isNaN(num1) || isNaN(num2)) {
     alert(`Найбільший спільний дільник чисел ${num1} і ${num2} — ${result}`);
 }
 
-
+//  5
 
 const number = parseInt(prompt("Введіть число:"));
 
