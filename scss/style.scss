@@ -55,23 +55,6 @@ body {
 // Сторінки
 
 .delivery {
-	padding: 15px 12px;
-	// .delivery__title
-	&__title {
-		position: relative;
-		font-size: 16px;
-		&::after {
-			content: "";
-			display: block;
-			width: 102%;
-			height: 1px;
-			background-color: #000;
-			position: absolute;
-			left: 0;
-			top: 0;
-		}
-	}
-
 	// .delivery__list
 
 	&__list {
